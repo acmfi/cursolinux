@@ -1,2 +1,157 @@
 \chapter{VI}
 \label{cha:VI}
+
+VI es un editor de textos pequeño y versátil. Viene instalado en todos los
+sistemas UNIX por lo que nos interesa conocerlo y saber utilizarlo.
+
+Para editar un fichero utilizaremos:
+
+\begin{lstlisting}
+vi FICHERO
+\end{lstlisting}
+
+Existe una versión mejorada llamada VIM (\emph{Vi IMproved}) que habitualmente
+está instalado. Esta versión incluye un modo no compatible (con VI) que
+incluye más comandos y opciones que podéis encontrar en
+\url{http://www.vim.org/}.
+
+En este capítulo utilizaremos los comandos compatibles con VIM, que en su gran
+mayoría están cubiertos en VI. En cualquier caso la recomendación es instalar
+VIM y ejecutar \emph{vimtutor}.
+
+\section{Modos} % (fold)
+\label{sec:Modos}
+
+En VI existen principalmente dos modos: el modo edición y el modo comando. La
+principal diferencia es que en modo edición nuestras pulsaciones se escriben en
+el fichero que estamos editando mientras que en modo comando son instrucciones
+que el propio VI interpreta.
+
+Al arrancar VI entramos en modo comando.
+
+\subsection{Cambio entre modos} % (fold)
+\label{sub:Cambio entre modos}
+
+Para pasar del modo comando al modo edición tenemos que utilizar cualquiera de
+los comandos de edición. Es decir, comandos de añadir texto, insertar texto,
+cambiar texto, abrir línea de texto, etc\...
+
+Para pasar del modo edición al modo comando tenemos que pulsar la tecla
+\emph{Escape}.
+
+% subsection Cambio entre modos (end)
+
+% section Modos (end)
+
+\section{Movimiento dentro de VI} % (fold)
+\label{sec:Movimiento dentro de VI}
+
+Dentro del modo comando podemos desplazarnos dentro del fichero:
+
+\begin{description}
+    \item[h] una letra hacia la izquierda
+    \item[k] una letra hacia arriba
+    \item[l] una letra hacia la derecha
+    \item[j] una letra hacia abajo
+    \item[w] comienzo de la siguente palabra
+    \item[e] final de la palabra actual
+    \item[b] comienzo de la palabra anterior
+\end{description}
+
+Los desplazamientos se pueden encadenar o repetir o bien de forma manual,
+pulsando varias veces, o bien utilizando un multiplicador antes del comando.
+Por ejemplo para bajar tres líneas podemos utilizar \textbf{3j}.
+
+% section Movimiento dentro de VI (end)
+
+\section{Buscar} % (fold)
+\label{sec:Buscar}
+
+Para buscar disponemos de dos comandos desde el modo comando:
+
+\begin{description}
+    \item[/] que busca desde la posición actual hacia abajo
+    \item[?] que busca desde la posición actual hacia arriba
+\end{description}
+
+Podemos avanzar a la siguiente coincidencia con el comando \textbf{n}, en la
+misma dirección, o bien con el comando \textbf{N}, en dirección contraria.
+
+% section Buscar (end)
+
+\section{Comandos de edición de texto} % (fold)
+\label{sec:Comandos de edicion de texto}
+
+Todos estos comandos se utilizan desde el modo de comandos y automáticamente
+nos pasan al modo de edición. Es decir, el primer comando da la orden y a
+continuación pasamos inmediatamente a editar el fichero.
+
+\begin{description}
+    \item[i] insertar a partir de la posición actual
+    \item[a] añadir, insertar a partir de la siguiente posición de la actual
+    \item[c + Movimiento] reemplaza el texto desde la posición actual hasta el
+    fin del movimiento.
+    \item[o] abrir una línea por debajo de la posición actual e insertar 
+\end{description}
+
+Vamos a ver con más detalle el comando \textbf{c}. Si queremos reemplazar la
+palabra actual, nos colaremos en el comienzo de la palabra y ejecutaremos
+\textbf{cw} que automáticamente pasará al modo edición substituyendo la
+palabra.
+
+De esta forma muchos comandos pueden afectar un rango de texto, desde la
+posición actual hasta el desplazamiento que elijamos. Pudiendo encadenar varios
+desplazamientos, por ejemplo reemplazar tres palabras con \textbf{c3w}.
+
+La versión en mayúsculas de estos comandos realiza acciones similares:
+
+\begin{description}
+    \item[I] insertar en el comienzo de la línea actual
+    \item[A] insertar al final de la línea actual
+    \item[O] abrir una línea por encima de la posición actual e insertar
+\end{description}
+
+% section Comandos de edición de texto (end)
+
+\section{Copia, cortar y pegar} % (fold)
+\label{sec:Copia, cortar y pegar}
+
+Desde el modo comando podemos realizar las operaciones típicas de cortar y
+pegar un texto. Con estos comandos utilizaremos un desplazamiento relativo.
+
+\begin{description}
+    \item[d + Movimiento] elimina, cortando
+    \item[dd] elimina, cortando, la línea actual
+    \item[y + Movimiento] copia
+    \item[yy] copia la línea actual
+    \item[p] pega
+\end{description}
+% section Copia, cortar y pegar (end)
+
+\section{Deshacer y rehacer} % (fold)
+\label{sec:Deshacer y rehacer}
+
+Tenemos dos comandos:
+
+\begin{description}
+    \item[u] deshace el último cambio realizado
+    \item[Control + r] rehace el último deshacer
+\end{description}
+
+% section Deshacer y rehacer (end)
+
+\section{Guardar y salir} % (fold)
+\label{sec:Guardar y salir}
+
+Existen múltiples comandos para guardar y salir de VI:
+
+\begin{description}
+    \item[:w] guarda el fichero
+    \item[:e!] vuelve a abrir el fichero actual, perdiendo los cambios
+    realizados
+    \item[ZZ] guarda y sale
+    \item[:q] sale
+    \item[:q!] sale ignorando los cambios realizados
+\end{description}
+
+% section Guardar y salir (end)
